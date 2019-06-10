@@ -1,11 +1,11 @@
 // +build linux,cgo
 
-package go-plctag
+package plctag
 
 // acgo pkg-config: libplctag
 
-// #cgo CFLAGS: -I${SRCDIR}/../../third_party/libplctag/src/lib -g -Wall
-// #cgo LDFLAGS: -L${SRCDIR}/../../libs -lplctag -lutil
+// #cgo CFLAGS: -I${SRCDIR}/third_party/libplctag/src/lib -g -Wall
+// #cgo LDFLAGS: -L${SRCDIR}/libs -lplctag -lutil
 // #include <stdlib.h>
 // #include "libplctag.h"
 import "C"
