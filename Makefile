@@ -4,10 +4,10 @@ SHELL := /bin/bash
 default: all
 
 so-builder:
-	docker build --rm -t $(APP_NAME)/builder . -f ./Dockerfile-libplctag
+	docker build --rm -t $(APP_NAME)/builder . -f ./build/Dockerfile
 
 so-lib: so-builder
 	docker run --rm -v "$(CURDIR)/libs:/artifact" -v "$(CURDIR):/go/src/github.com/brcz/go-plctag" $(APP_NAME)/builder
 
-sync:
+all: so-lib
 	

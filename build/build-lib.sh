@@ -1,15 +1,22 @@
 #!/bin/bash
+
+PLCTAG_VERSION=2.4.5
+
 echo "=============== Building libplctag ==============="
-OLDPWD=$(pwd)
-SCRIPTDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-cd ${SCRIPTDIR}/..
-pwd
+pushd $(pwd)
+mkdir /tmp/libplctag
+cd /tmp/libplctag
+wget https://github.com/kyle-github/libplctag/archive/v$PLCTAG_VERSION.tar.gz
+tar xzf v$PLCTAG_VERSION.tar.gz
 
-cd third_party/libplctag
-mkdir -p build
-cd build
-cmake ..
-make
-cp libplctag.so /artifact/libplctag.so
+cd libplctag-$PLCTAG_VERSION && mkdir -p build && cd build && cmake .. && make && sudo make install
+rm -fr /tmp/libplctag
 
-cd $OLDPWD
+cp /usr/local/lib/* /artifact/lib/
+
+echo "=============== listing libs ==============="
+ls -la /usr/local/lib
+echo "=============== listing artifacts ==============="
+ls -la /artifact
+
+popd

@@ -1,9 +1,17 @@
-FROM ubuntu:18.04 as libplc-builder
+FROM ubuntu:20.04 as libplc-builder
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PACKAGE github.com/cfnorg/edged/internal/edged/app
-RUN apt-get update
-RUN apt-get install -y build-essential git cmake
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    apt-utils \
+    build-essential \
+    cmake \
+    ubuntu-dev-tools \
+    wget \
+    mlocate \
+    autoconf autogen automake \
+    pkg-config libtool libcurl3-openssl-dev libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /artifact
 
