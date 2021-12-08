@@ -10,4 +10,4 @@ so-lib: so-builder
 	docker run --rm -v "$(CURDIR)/libs:/artifact" -v "$(CURDIR):/go/src/github.com/brcz/go-plctag" $(APP_NAME)/builder
 
 all: so-lib
-	
+
